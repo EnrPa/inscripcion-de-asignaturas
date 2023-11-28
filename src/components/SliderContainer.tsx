@@ -1,11 +1,15 @@
 import { ETipoClase, type IAsignatura, type IFormProps, type ISeccion } from "./interfaces";
 import Progress from "./Progress";
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createSignal, on } from "solid-js";
 import SelectionForm from "./forms/SelectionForm";
-import {Calendar, FinalWeekView } from "./forms/Calendar";
+import {Calendar } from "./forms/Calendar";
 import {} from "solid-slider/slider.css";
 import { createSlider } from "solid-slider";
 import SlideBox from "./forms/SlideBox";
+import Confirmacion from "./forms/Confimacion";
+import Final from "./forms/Final";
+import "./../../public/style.css"
+
 
 const asignaturasChatGPT = [
   {
@@ -168,9 +172,17 @@ const asignaturasChatGPT = [
   
 ]
 
+/* window.addEventListener("beforeunload", function (e) {
+  var confirmationMessage = 'Se perderá el progreso si cambias de página'
+                          + 'Por favor confirmar.';
+
+  (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+  return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+}); */
+
 const [asigSelecionadas, setAsigSeleccionadas] = createSignal<IAsignatura[]>([]);
 const [seccionesSelecionadas, setSeccionesSelecionadas] = createSignal([]);
-const formNames = ['Selección', 'Calendario', 'Inscripción']
+const formNames = ['Selección', 'Calendario', 'Confirmación', 'Finalización']
 
 function SliderLayout() {
   const [slider, { current, next, prev, moveTo }] = createSlider({loop: false, drag:false, defaultAnimation: {duration: 2000}, renderMode: 'performance'});
@@ -183,13 +195,17 @@ function SliderLayout() {
         break;
       case 1:
         console.log('Slide N°', current())
-        setSeccionesSelecionadas([]);
+        //setSeccionesSelecionadas([]);
         break;
+      case 2:
     }
   })
   createEffect(() => {
     console.warn("[AsigSelecionadas]", asigSelecionadas())
   })
+  createEffect(on(seccionesSelecionadas,() =>{
+    console.warn("[seccionesSelecionadas]", seccionesSelecionadas() )
+  }))
 
   return (
     <main>
@@ -204,12 +220,24 @@ function SliderLayout() {
           </SlideBox>
         </div>
         <div>
-         <Calendar asignaturas={asigSelecionadas} slide={current} seleccionadas={setSeccionesSelecionadas} next={next}/>
+          <SlideBox>
+
+            <Calendar asignaturas={asigSelecionadas} slide={current} seleccionadas={setSeccionesSelecionadas} next={next}/>
+          </SlideBox>
+        </div>
+        <div>
+         <Confirmacion asignaturas={asignaturasChatGPT} next={next} current={current} secciones={seccionesSelecionadas}/>
+        </div>
+        <div>
+         <Final/>
         </div>
       </div>
+      <div class="bg-white">
       <button onClick={() => {prev()}}>IZQUIERDA</button>
       <p> - {current().toString()} - </p>
       <button onClick={() => {next()}}>DERECHA</button>
+
+      </div>
     </main>
   )
 }

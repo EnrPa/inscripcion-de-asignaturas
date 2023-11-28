@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../layouts/Nav.astro";
+
+const errors = { email: "", password: "" };
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const email = data.get("email");
+    const password = data.get("password");
+    if (typeof email !== "string" ||  !/^[a-zA-Z._%+-]+@[a-zA-Z.-]+\.[a-zA-Z]{1,}$/.test(email)){
+      errors.email += "El correo ingresado no es válido"
+    }
+    console.log(email, password)
+    const hasErrors = Object.values(errors).some(msg => msg)
+    if (!hasErrors){
+      return Astro.redirect('/inscripcion')
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+
+---
+
+
+
+<Layout title="Inicio sesión">
+  <Nav />
+  <main class="w-screen bg-primary2 backdrop-blur-sm h-screen flex items-center justify-center">
+    <div class="bg-neutral-200 w-96 h-max p-5">
+      <form class="flex flex-col justify-center" method="POST">
+        <h1 class="text-3xl text-center">Inicio sesión</h1>
+        <label>
+          Correo electrónico
+          <input type="email" name="email" class="w-full" required>
+        </label>
+        {errors.email && <p>{errors.email}</p>}
+        <label>
+          Contraseña
+          <input type="password" name="password" class="w-full" required minlength="8"/>
+        </label>
+        {errors.password && <p>{errors.password}</p>}
+
+        <button>Iniciar sesión</button>
+        <a class="text-center">¿Olvidó su contraseña?</a>
+      </form>
+    </div>
+  </main>
+</Layout>

@@ -14,13 +14,14 @@ function UIEvent(props: any){
   return (
     <div class={'static rounded-sm w-full bg-white overflow-hidden ' + props.class}
     style={{"grid-row-start": startMinute, "grid-row-end": endMinute}}>
-      <h1>Clase aquí!</h1>
+      <p>{props.clase.profesor}</p>
+      <p>{props.clase.tipoClase}</p>
     </div>
   )
 }
 
 
-function WeekView(props: any){
+export function WeekView(props: any){
   return (
     <div class="shadow-lg w-[700px] h-full flex flex-row">
       <For each={weekDay}>{(day: string) => 
@@ -45,22 +46,21 @@ function WeekView(props: any){
 }
 export function FinalWeekView(props: any){
   createEffect(() => {
-    console.warn(props.asignaturas());
-    console.log("Haciendo Vista Final del Horario", props.asignaturas())
+    console.warn("FUNCIONA O NO LA WEA DE", props.asignaturas())
   })
   return (
-    <div class="bg-red-800 w-[700px] h-full flex flex-row">
+    <div class="shadow-lg w-[700px] h-full flex flex-row">
       <For each={weekDay}>{(day: string) => 
         <div class="h-full w-full min-w-[4rem]">
-          <header class="">
+          <header class="bg-primary1 px-4 py-2 border-x border-gray-700">
             <h1>{day}</h1>
           </header>
-          <div class="w-full bg-slate-800 h-[800px] grid grid-rows-[repeat(1440,_minmax(0,_1fr))] grid-flow-row">
-            <For each={props.asignaturas()}>{(seccion: ISeccion)=>
-              <For each={seccion.clases}>{(clase)=>
-                <UIEvent clase={clase} day={day} />
+          <div class="w-full bg-gray-200 border border-black h-[800px] grid grid-rows-[repeat(1440,_minmax(0,_1fr))] grid-flow-row">
+          <For each={props.asignaturas()}>{(seccion: ISeccion)=>
+                <For each={seccion.clases}>{(clase: IClases)=>
+                  <UIEvent clase={clase} day={day} class="bg-green-200" />
+                }</For>
               }</For>
-            }</For>
           </div>
         </div>
       }</For>
@@ -76,7 +76,6 @@ function AsignaturasList(props: any){
   }
 
 
-
   return (
     <section class="w-2/4 max-h-[40rem] overflow-scroll bg-slate-50">
 
@@ -90,7 +89,7 @@ function AsignaturasList(props: any){
               class="bg-slate-200 transition-colors hover:bg-slate-500 flex flex-row"
             >
               <aside class="flex w-1/12  items-center justify-center">
-                <input type="radio" name={asignatura.numeroCurso}  id={asignatura.idAsignatura + "-" + seccion.idSeccion} onClick={(e) => {props.selected(seccion)}}/>
+                <input type="radio" name={asignatura.numeroCurso} disabled={false} id={asignatura.idAsignatura + "-" + seccion.idSeccion} onClick={(e) => {props.toggleSelected(seccion)}}/>
               </aside>
               <div>
                 <h1>{seccion.idSeccion}. {asignatura.nombre}-{seccion.numeroSeccion}</h1>
@@ -128,12 +127,13 @@ export function Calendar(props: any){
   
   const [hover, setHover] = createSignal<ISeccion>(placeHolder);
   const [selected, setSelected] = createSignal<ISeccion[]>([]);
+  const [final, setFinal] = createSignal();
   let prev = -1
   createEffect(() => {
     // Mecanismo que elimina todo si es que se retrocede a la selección de
     // asignaturas, evitando problemas de actualización de contenido.
     if(props.slide() == 1 && props.slide() > prev){
-      setHover(placeHolder),
+      setHover(placeHolder);
       setSelected([]);
     } else {
       prev = props.slide();
@@ -143,9 +143,6 @@ export function Calendar(props: any){
 
   const toggleSelected = (newSection: ISeccion) => {
     if (selected().some(section => section.idSeccion == newSection.idSeccion && section.idAsignatura == newSection.idAsignatura)){
-/*       let x =document.getElementsByName(e.idSeccion.toString()).forEach((name)=>{
-        name.checked = false;
-      }) */
       let x =document.getElementById(newSection.idAsignatura + "-" + newSection.idSeccion)! as HTMLInputElement
       x.checked = false;
       setSelected(selected().filter(section => section.idAsignatura != newSection.idAsignatura))
@@ -172,9 +169,14 @@ export function Calendar(props: any){
   createEffect(() =>{
     console.warn("[Calendario]: Cambió asignaturas", props.asignaturas())
   })
+  createEffect(on(selected, () => {
+    setFinal(selected());
+  }))
 
   function handleContinue(){
-    let idSelectedList = selected().map(selected => selected.idSeccion)
+    props.seleccionadas(final());
+
+/*     let idSelectedList = selected().map(selected => selected.idSeccion)
     console.log(idSelectedList)
     let final = props.asignaturas().map((asignatura: IAsignatura) => {
       let seccion = asignatura.secciones.filter(seccion => idSelectedList.includes(seccion.idSeccion))
@@ -182,16 +184,15 @@ export function Calendar(props: any){
       return asignatura
     })
     console.warn("[FINAL]", final)
-    props.seleccionadas(final);
+    props.seleccionadas(final); */
     props.next();
   }
-
 
   return (
     <main>
       <div >
         <div class="flex items-center">
-          <AsignaturasList asignaturas={props.asignaturas} setHover={setHover} selected={toggleSelected}/>
+          <AsignaturasList asignaturas={props.asignaturas} setHover={setHover} toggleSelected={toggleSelected}/>
           <WeekView hover={hover} asignaturas={props.asignaturas} selected={selected}/>
         </div>
         <button onClick={() => handleContinue()}>Continuar</button>

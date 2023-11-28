@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SliderLayout from "../components/SliderContainer";
+import Nav from "../layouts/Nav.astro";
+
+---
+
+<Layout title="Inscripción">
+  <main class="w-screen h-screen">
+    <Nav />
+    <SliderLayout client:only="solid-js"/>
+  </main>
+</Layout>

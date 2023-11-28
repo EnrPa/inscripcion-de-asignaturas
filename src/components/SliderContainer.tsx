@@ -8,6 +8,7 @@ import { createSlider } from "solid-slider";
 import SlideBox from "./forms/SlideBox";
 import Confirmacion from "./forms/Confimacion";
 import Final from "./forms/Final";
+import "./../../public/style.css"
 
 
 const asignaturasChatGPT = [
@@ -171,6 +172,14 @@ const asignaturasChatGPT = [
   
 ]
 
+/* window.addEventListener("beforeunload", function (e) {
+  var confirmationMessage = 'Se perderá el progreso si cambias de página'
+                          + 'Por favor confirmar.';
+
+  (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+  return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+}); */
+
 const [asigSelecionadas, setAsigSeleccionadas] = createSignal<IAsignatura[]>([]);
 const [seccionesSelecionadas, setSeccionesSelecionadas] = createSignal([]);
 const formNames = ['Selección', 'Calendario', 'Confirmación', 'Finalización']
@@ -211,7 +220,10 @@ function SliderLayout() {
           </SlideBox>
         </div>
         <div>
-         <Calendar asignaturas={asigSelecionadas} slide={current} seleccionadas={setSeccionesSelecionadas} next={next}/>
+          <SlideBox>
+
+            <Calendar asignaturas={asigSelecionadas} slide={current} seleccionadas={setSeccionesSelecionadas} next={next}/>
+          </SlideBox>
         </div>
         <div>
          <Confirmacion asignaturas={asignaturasChatGPT} next={next} current={current} secciones={seccionesSelecionadas}/>

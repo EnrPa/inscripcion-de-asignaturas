@@ -73,7 +73,7 @@ export default function SelectionForm(props : any) {
           }</For>
         </tbody>
       </table>
-      <button onClick={() => handleContinue()}>Continuar</button>
+      <button onClick={() => handleContinue()} class="continue">Continuar</button>
     </div>
   )
 }

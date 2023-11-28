@@ -73,7 +73,7 @@ export default function Confirmacion(props: any){
           }</For>
         </div>
       </div>
-      <button onClick={() => {handleContinue()}}>Continuar</button>
+      <button onClick={() => {handleContinue()}} class="continue">Continuar</button>
     </main>
   )
 }

@@ -1,42 +1,73 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import type { Code } from "astro:components";
+import Layout from "../layouts/Layout.astro";
 import Nav from "../layouts/Nav.astro";
 ---
 <Layout title="Página principal">
+	
 	<Nav />
 	<main>
+		
 		<header class="flex w-full h-screen">
-			<section class="flex flex-col justify-center px-5 lg:items-end items-center lg:w-3/4 sm:w-full bg-primary1">
-				<h1 class="text-6xl text-center">Inscripción de <span class="font-bold">Asignaturas</span></h1>
-				<h2 class="text-4xl font-extralight py-5">Universidad Mayor 2023</h2>
-				<a href="/login" class="w-max h-max px-10 py-4  bg-primary2 text-white font-bold">¡Inscribete aquí!</a>
+			<section
+				class="flex flex-col justify-center px-5 lg:items-end items-center lg:w-3/4 sm:w-full bg-primary1"
+			>
+				<h1 class="text-6xl text-right font-bold">Inscripción de Asignaturas</h1>
+				<h2 class="text-4xl font-extralight py-5">
+					Universidad Mayor 2023
+				</h2>
+				<a
+				    
+					href="/login"
+					class="w-max h-max px-10 py-4 bg-primary2 text-white font-bold rounded-xl hover:bg-gray-500"
+					>¡Inscribete aquí!</a
+				>
 			</section>
 			<section class="lg:w-1/4 w-0 overflow-hidden">
-				<div class="w-full h-full blur scale-[1.3] bg-crowd-walking bg-no-repeat bg-cover">
+				<div
+					class="w-full h-full blur scale-[1.3] bg-crowd-walking bg-no-repeat bg-cover"
+				>
 				</div>
 			</section>
 		</header>
-		<section class="flex lg:justify-center lg:flex-row flex-wrap items-center flex-col [&>*]:m-3 w-full h-max  lg:px-32">
-			<article class="block w-96 h-64 bg-slate-400">
-				<h1>Preguntas Frecuentes</h1>
-				<p>Algunas de las preguntas frecuentes que tenemos podrían ser como cuándo serán las elecciones o qué es lo que haremos...</p>
+		<section
+			class="flex lg:justify-center lg:flex-row flex-wrap items-center flex-col [&>*]:m-3 w-full h-max lg:px-32"
+		>
+			<article class="block w-96 h-64 rounded-xl bg-gray-300">
+                <div class= "w-full h-1/5 rounded-t-xl font bg-yellow-300">
+					<h1 class="text-black text-center font-bold pt-3">
+						Preguntas Frecuentes
+					</h1>
+				</div>		
+				
 			</article>
-			<article class="block w-1/4 h-64 bg-slate-400">
-				<h1>Preguntas Frecuentes</h1>
-				<p>Algunas de las preguntas frecuentes que tenemos podrían ser como cuándo serán las elecciones o qué es lo que haremos...</p>
+			<article class="block w-96 h-64 rounded-xl bg-gray-300">
+                <div class= "w-full h-1/5 rounded-t-xl font bg-yellow-300">
+					<h1 class="text-black text-center font-bold pt-3">
+						Preguntas Frecuentes
+					</h1>
+				</div>		
+				
 			</article>
-			<article class="block w-1/4 h-64 bg-slate-400">
-				<h1>Preguntas Frecuentes</h1>
-				<p>Algunas de las preguntas frecuentes que tenemos podrían ser como cuándo serán las elecciones o qué es lo que haremos...</p>
+			<article class="block w-96 h-64 rounded-xl bg-gray-300">
+                <div class= "w-full h-1/5 rounded-t-xl font bg-yellow-300">
+					<h1 class="text-black text-center font-bold pt-3">
+						Preguntas Frecuentes
+					</h1>
+				</div>		
+				
 			</article>
-			<article class="block w-1/4 h-64 bg-slate-400">
-				<h1>Preguntas Frecuentes</h1>
-				<p>Algunas de las preguntas frecuentes que tenemos podrían ser como cuándo serán las elecciones o qué es lo que haremos...</p>
+			<article class="block w-96 h-64 rounded-xl bg-gray-300">
+                <div class= "w-full h-1/5 rounded-t-xl font bg-yellow-300">
+					<h1 class="text-black text-center font-bold pt-3">
+						Preguntas Frecuentes
+					</h1>
+				</div>		
+				
 			</article>
 		</section>
 		<footer class="bg-background h-48 w-full">
-			<div class="grid">
-			</div>
+			<div class="grid"></div>
 		</footer>
 	</main>
 </Layout>

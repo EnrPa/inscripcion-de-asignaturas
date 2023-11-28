@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.selection-table table, th, td {
+  border: 1px solid black;
+}
+
+.continue {
+  @apply mt-5 w-56 rounded-md bg-primary1 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary1  transition ease-in duration-150;
+}

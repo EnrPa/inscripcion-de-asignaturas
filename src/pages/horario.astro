@@ -1,0 +1,123 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../layouts/Nav.astro";
+import CalendarioAsignatura from "../components/CalendarioAsignatura.astro"
+---
+
+<Layout title="Horario actual">
+    <Nav/>
+    <div class="w-full h-12"></div>
+    <h1 class="my-10 text-center text-4xl font-bold">Horario de clases</h1>
+    <table class="mx-auto table rounded-lg bg-white p-4 shadow">
+        <thead>
+          <tr>
+            <th class="whitespace-nowrap border p-4 font-bold text-center text-gray-900 w-1/12">Hora</th>
+            <th class="whitespace-nowrap border p-4 font-bold text-center text-gray-900 w-2/12" >Lunes</th>
+            <th class="whitespace-nowrap border p-4 font-bold text-center text-gray-900 w-2/12">Martes</th>
+            <th class="whitespace-nowrap border p-4 font-bold text-center text-gray-900 w-2/12">Miercoles</th>
+            <th class="whitespace-nowrap border p-4 font-bold text-center text-gray-900 w-2/12">Jueves</th>
+            <th class="whitespace-nowrap border p-4 font-bold text-center text-gray-900 w-2/12">Viernes</th>
+            <th class="whitespace-nowrap border p-4 font-bold text-center text-gray-900 w-1/12">Sabado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-gray-700">
+            <td class="border p-4 text-center">08:00</td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+          </tr>
+          <tr class="text-gray-700">
+            <td class="border p-4 text-center">09:30</td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Ingeniería de software" profesor="Armando Tamponi" sala="MCSR - 308"/>
+            </td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Sistemas operativos" profesor="Ricardo Bravo" sala="MALC - 303"/>
+            </td>
+            <td class="border p-4"></td>
+          </tr>
+          <tr class="text-gray-700">
+            <td class="border p-4 text-center">11:00</td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Ingeniería de software" profesor="Armando Tamponi" sala="MCSR - 308"/>
+            </td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Sistemas operativos" profesor="Ricardo Bravo" sala="MALC - 303"/>
+            </td>
+            <td class="border p-4"></td>
+          </tr>
+          <tr class="text-gray-700">
+            <td class="border p-4 text-center ">12:30</td>
+            <td class="border p-4 "></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+          </tr>
+          <tr class="text-gray-700">
+            <td class="border p-4 text-center">14:00</td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Contabilidad de costos" profesor="Armando Barreda" sala="MCSR - 405"/>
+            </td>
+            <td class="border p-4"></td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Matemáticas discretas" profesor="Yuri Caceres" sala="MALI - 210"/>
+            </td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Diseño de interfaces usuarias" profesor="Alonso Berrios" sala="MALC - 303"/>
+            </td>
+            <td class="border p-4 text-center"></td>
+            <td class="border p-4"></td>
+          </tr>
+          <tr class="text-gray-700">
+            <td class="border p-4 text-center">15:30</td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Contabilidad de costos" profesor="Armando Barreda" sala="MCSR - 405"/>
+            </td>
+            <td class="border p-4 "></td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Matemáticas discretas" profesor="Yuri Caceres" sala="MALI - 210"/>
+            </td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Diseño de interfaces usuarias" profesor="Alonso Berrios" sala="MALC - 303"/>
+            </td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Métodos de optimización" profesor="Germán Toledo" sala="MCSR - 303"/>
+            </td>
+      
+            <td class="border p-4"></td>
+          </tr>
+          <tr class="text-gray-700">
+            <td class="border p-4 text-center">17:00</td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-2">
+              <CalendarioAsignatura asignatura="Métodos de optimización" profesor="Germán Toledo" sala="MCSR - 303"/>
+            </td>
+            <td class="border p-4"></td>
+          </tr>
+          <tr class="text-gray-700">
+            <td class="border p-4 text-center">18:30</td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+            <td class="border p-4"></td>
+          </tr>
+        </tbody>
+      </table>
+</Layout>

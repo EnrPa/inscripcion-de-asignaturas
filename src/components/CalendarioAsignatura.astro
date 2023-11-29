@@ -1,0 +1,19 @@
+---
+interface Props {
+  asignatura: string;
+  profesor: string;
+  sala: string;
+}
+
+const {
+  asignatura,
+  profesor = "Sin definir",
+  sala = "Sin definir",
+} = Astro.props;
+---
+
+<div class=" text-center w-auto overflow-hidden rounded-2xl border-2 border-solid border-amber-300 bg-white p-3 shadow">
+  <p class="text-base font-bold text-gray-800 my-0">{asignatura}</p>
+  <p class="text-xs font-light text-gray-500 my-0">Profesor {profesor}</p>
+  <p class="text-xs font-light text-gray-500 my-0">Sala {sala}</p>
+</div>

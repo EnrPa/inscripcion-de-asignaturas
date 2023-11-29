@@ -5,6 +5,23 @@ const weekDay = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado",
 const fuckedUpWeekDay = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado"];
 const tiempos = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
 
+function getIcon(tipoClase: ETipoClase) {
+  let icono = ""
+  switch (tipoClase) {
+    case ETipoClase.Catedra:
+      icono = "/catedra.svg";
+      break;
+    case ETipoClase.Laboratorio:
+      icono = "/lab.svg";
+      break;
+    case ETipoClase.Taller:
+      icono = "/taller.svg";
+      break
+  }
+  return <img src={icono} class="w-min h-min pr-4" />
+}
+
+
 function UIEvent(props: any) {
   let startMinute = props.clase.inicio.getMinutes() + props.clase.inicio.getHours() * 60
   startMinute = startMinute == 0 ? 1 : startMinute;
@@ -14,6 +31,7 @@ function UIEvent(props: any) {
   return (
     <div class={'static rounded-lg  bg-white text-center w-auto overflow-hidden border-2 border-solid border-amber-300 shadow' + props.class}
       style={{ "grid-row-start": startMinute, "grid-row-end": endMinute }}>
+        {getIcon(props.clase.tipoClase)}
       <p class="text-base font-bold text-gray-800 my-0">{props.clase.profesor}</p>
       <p class="text-s font-light text-gray-500 my-0">{props.clase.tipoClase}</p>
     </div>
@@ -65,7 +83,7 @@ export function FinalWeekView(props: any) {
           <div class="w-full bg-gray-200 border border-black h-[800px] grid grid-rows-[repeat(1440,_minmax(0,_1fr))] grid-flow-row">
             <For each={props.asignaturas()}>{(seccion: ISeccion) =>
               <For each={seccion.clases}>{(clase: IClases) =>
-                <UIEvent clase={clase} day={day} class="bg-green-200" />
+                <UIEvent clase={clase} day={day} class="bg-green-200" seccion={seccion} />
               }</For>
             }</For>
           </div>
@@ -82,21 +100,6 @@ function AsignaturasList(props: any) {
     return fuckedUpWeekDay[start.getDay()] + " a las " + formatter.format(start) + " hasta las " + formatter.format(end)
   }
 
-  function getIcon(tipoClase: ETipoClase) {
-    let icono = ""
-    switch (tipoClase) {
-      case ETipoClase.Catedra:
-        icono = "/catedra.svg";
-        break;
-      case ETipoClase.Laboratorio:
-        icono = "/lab.svg";
-        break;
-      case ETipoClase.Taller:
-        icono = "/taller.svg";
-        break
-    }
-    return <img src={icono} class="w-min h-min pr-4" />
-  }
 
   return (
     <section class="min-w-[40rem]  py-2 px-7 rounded-lg  max-h-[40rem] overflow-scroll m-16 border-2 shadow">
@@ -111,11 +114,12 @@ function AsignaturasList(props: any) {
               class= "shadow bg-white border border-gray-200 transition-colors hover:bg-gray-50 rounded-xl px-4 py-4 flex  mb-4"
             >
               <aside class="flex w-1/12 items-center justify-center">
-                <input class="w-6 h-6 mr-2 checked:bg-yellow-300" type="radio" name={asignatura.numeroCurso} disabled={false} id={asignatura.idAsignatura + "-" + seccion.idSeccion} onClick={(e) => { props.toggleSelected(seccion) }} />
+                <input class="w-6 h-6 mr-2 checked:bg-yellow-300" disabled={props.disabledSectionIDs().includes(seccion.numeroSeccion)} type="radio" name={asignatura.numeroCurso} id={asignatura.idAsignatura + "-" + seccion.idSeccion} onClick={(e) => { props.toggleSelected(seccion) }} />
               </aside>
               <div>
                 <h1 class="font-bold">Sección {seccion.numeroSeccion}</h1>
                 <div>
+                    {props.disabledSectionIDs().includes(seccion.numeroSeccion) &&<p class="text-red-500">Existe una colisión entre asignaturas. No es posible tomar esta sección</p>}
                   <details >
                     <summary>Ver clases</summary>
                     <For each={seccion.clases}>{clase =>
@@ -157,6 +161,39 @@ export function Calendar(props: any) {
   const [hover, setHover] = createSignal<ISeccion>(placeHolder);
   const [selected, setSelected] = createSignal<ISeccion[]>([]);
   const [final, setFinal] = createSignal();
+  const [disabledSectionIDs, setDisabledSectionIDs] = createSignal<string[]>([]);
+
+  function compararTiempos(inicio1: Date, finalizacion1: Date, inicio2: Date, finalizacion2: Date): boolean {
+    const seSuperponenDias = inicio1.getUTCDate() === inicio2.getUTCDate();
+    const seSuperponenHoras = inicio1.getUTCHours() === inicio2.getUTCHours();
+    const seSuperponenMinutos = Math.abs(inicio1.getUTCMinutes() - inicio2.getUTCMinutes()) < 60;
+  
+    const seSuperpone =
+      seSuperponenDias &&
+      ((inicio1 <= inicio2 && finalizacion1 >= inicio2) || (inicio1 >= inicio2 && inicio1 <= finalizacion2)) &&
+      (seSuperponenHoras || seSuperponenMinutos);
+  
+    return seSuperpone;
+  }
+
+  function averiguarChoques() {
+    setDisabledSectionIDs([]);
+    // Pasar por casa asignatura.
+    let flatAsignaturas: ISeccion[] = props.asignaturas().map((a:IAsignatura) => a.secciones).flat()
+    flatAsignaturas.forEach((seccion: ISeccion) => {
+      seccion.clases.forEach((clase: IClases) => {
+        selected().forEach((seleccionadaSeccion:ISeccion)=> {
+          seleccionadaSeccion.clases.forEach((seleccionadaClase: IClases) => {
+            if (compararTiempos(clase.inicio, clase.finalizacion, seleccionadaClase.inicio, seleccionadaClase.finalizacion) && seccion.numeroSeccion != seleccionadaSeccion.numeroSeccion){
+              console.warn("Hay choque entre", seleccionadaSeccion, "y", seccion )
+              setDisabledSectionIDs([...disabledSectionIDs(), seccion.numeroSeccion])
+            }
+          })
+        })
+      })
+    })
+  }
+
   let prev = -1
   createEffect(() => {
     // Mecanismo que elimina todo si es que se retrocede a la selección de
@@ -168,6 +205,9 @@ export function Calendar(props: any) {
       prev = props.slide();
     }
   })
+  createEffect(on(selected, () => {
+    averiguarChoques()
+  }))
 
 
   const toggleSelected = (newSection: ISeccion) => {
@@ -208,10 +248,16 @@ export function Calendar(props: any) {
     <main>
       <div >
         <div class="flex items-center">
-          <AsignaturasList asignaturas={props.asignaturas} setHover={setHover} toggleSelected={toggleSelected} />
+          <div>
+            <AsignaturasList asignaturas={props.asignaturas} setHover={setHover} toggleSelected={toggleSelected} disabledSectionIDs={disabledSectionIDs} />
+            <div class="flex">
+              <button onClick={() => props.prev()} class="back flex"> <img src="back.svg" />Volver</button>
+              <button onClick={() => handleContinue()} class="continue flex justify-between">Continuar <img src="next.svg" /></button>
+
+            </div>
+          </div>
           <WeekView hover={hover} asignaturas={props.asignaturas} selected={selected} />
         </div>
-        <button onClick={() => handleContinue()} class="continue">Continuar</button>
       </div>
     </main>
   )

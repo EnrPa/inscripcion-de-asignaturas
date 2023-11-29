@@ -91,7 +91,9 @@ export default function SelectionForm(props: any) {
           }</For>
         </tbody>
       </table>
-      <button onClick={() => handleContinue()} class="continue">Continuar</button>
+      <div>
+        <button onClick={() => handleContinue()} class="continue flex justify-between">Continuar <img src="next.svg" /></button>
+      </div>
     </div>
   )
 }

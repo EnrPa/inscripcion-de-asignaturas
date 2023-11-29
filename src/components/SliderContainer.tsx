@@ -209,24 +209,25 @@ function SliderLayout() {
 
   return (
     <main>
-      <div class="w-full h-12"></div>
       <header class="bg-white m-auto w-2/4 px-8 border-2 border-gray-200 py-8 fixed bottom-10 z-20 inset-x-0 mx-auto rounded-xl h-12">
         <Progress step={current} forms={formNames}/>
       </header>
       <div use:slider>
         <div class="flex items-center justify-center bg-neutral-300">
           <SlideBox>
-            <SelectionForm asignaturas={asignaturasChatGPT} seleccionadas={setAsigSeleccionadas} next={next}/>
+            <SelectionForm asignaturas={asignaturasChatGPT} seleccionadas={setAsigSeleccionadas} next={next} prev={prev}/>
           </SlideBox>
         </div>
         <div class="">
           <SlideBox>
 
-            <Calendar asignaturas={asigSelecionadas} slide={current} seleccionadas={setSeccionesSelecionadas} next={next}/>
+            <Calendar asignaturas={asigSelecionadas} slide={current} seleccionadas={setSeccionesSelecionadas} next={next} prev={prev}/>
           </SlideBox>
         </div>
         <div>
-         <Confirmacion asignaturas={asignaturasChatGPT} next={next} current={current} secciones={seccionesSelecionadas}/>
+          <SlideBox>
+            <Confirmacion asignaturas={asignaturasChatGPT} next={next} current={current} secciones={seccionesSelecionadas} prev={prev}/>
+          </SlideBox>
         </div>
         <div>
          <Final/>

@@ -25,8 +25,8 @@ export default function Confirmacion(props: any){
       console.log("asignatura", asignatura)
       return (
         <div>
-          <h2>{asignatura.numeroCurso}</h2>
-          <h1>{asignatura.nombre}</h1>
+          <h1 class="font-bold text-xl">{asignatura.numeroCurso}</h1>
+          <h1 class="">{asignatura.nombre}</h1>
         </div>
       )
   }
@@ -57,18 +57,18 @@ export default function Confirmacion(props: any){
         <div>
           <FinalWeekView asignaturas={props.secciones} />
         </div>
-        <div class="block bg-white text-black w-full">
+        <div class="block bg-white  text-black w-full">
           <For each={props.secciones()}>{(seccion:ISeccion) => 
-            <section>
+            <section class="m-4 border border-gray-300 shadow rounded-xl p-3 w-1/3">
               {getAsignatura(seccion)}
               <h1>{seccion.numeroSeccion}</h1>
               <button onClick={() => handleConfirmar(seccion)}
               disabled={disabled()}
-              class="disabled:border-4 disabled:border-red-400"
+              class="px-4 py-2 rounded-xl mt-4 bg-primary1 border-yellow-500 border-2 font-bold"
                 style={{
-                  'background-color' : confirmados().includes(seccion) ? "blue" : "green",
+                  'background-color' : confirmados().includes(seccion) ? "white" : "",
                 }}
-              >Confirmar</button>
+              >{confirmados().includes(seccion) ? "Confirmado" : "Confirmar"}</button>
             </section>
           }</For>
         </div>

@@ -219,7 +219,7 @@ function SliderLayout() {
             <SelectionForm asignaturas={asignaturasChatGPT} seleccionadas={setAsigSeleccionadas} next={next}/>
           </SlideBox>
         </div>
-        <div>
+        <div class="">
           <SlideBox>
 
             <Calendar asignaturas={asigSelecionadas} slide={current} seleccionadas={setSeccionesSelecionadas} next={next}/>

@@ -7,14 +7,13 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-
 <html lang="en">
-	<link rel="stylesheet" href="public\styles\fuentes.css">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="stylesheet" href="public\styles\fuentes.css" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
@@ -36,20 +35,6 @@ const { title } = Astro.props;
 	}
 	html {
 		font-family: "Myriad Pro Bold", Arial, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-
-		
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+		background: #fff;
 	}
 </style>

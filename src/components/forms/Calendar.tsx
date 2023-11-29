@@ -116,7 +116,7 @@ function AsignaturasList(props: any) {
               <div>
                 <h1 class="font-bold">Sección {seccion.numeroSeccion}</h1>
                 <div>
-                  <details open>
+                  <details >
                     <summary>Ver clases</summary>
                     <For each={seccion.clases}>{clase =>
                       <section class="ml-5 my-4">

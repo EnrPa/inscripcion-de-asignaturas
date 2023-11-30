@@ -23,9 +23,9 @@ function getIcon(tipoClase: ETipoClase) {
 
 
 function UIEvent(props: any) {
-  let startMinute = props.clase.inicio.getMinutes() + (props.clase.inicio.getHours()-8) * 60
+  let startMinute = props.clase.inicio.getMinutes() + (props.clase.inicio.getHours()-7) * 60
   startMinute = startMinute == 0 ? 1 : startMinute;
-  let endMinute = props.clase.finalizacion.getMinutes() + (props.clase.finalizacion.getHours()-8) * 60
+  let endMinute = props.clase.finalizacion.getMinutes() + (props.clase.finalizacion.getHours()-7) * 60
   if (fuckedUpWeekDay[props.clase.inicio.getDay()] != props.day) return
 
   return (

@@ -10,6 +10,13 @@ import Confirmacion from "./forms/Confimacion";
 import Final from "./forms/Final";
 import "./../../public/style.css"
 
+document.addEventListener('keydown', function(e) {
+  // Verifica si la tecla presionada es la tecla Tab (código 9)
+  if (e.keyCode === 9) {
+    // Previene el comportamiento predeterminado de la tecla Tab
+    e.preventDefault();
+  }
+}); 
 // 7 es lunes
 // 8 es martes
 // 9 es miercoles

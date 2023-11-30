@@ -433,6 +433,9 @@ function SliderLayout() {
          <Final/>
         </div>
       </div>
+      <footer class="h-14">
+
+      </footer>
     </main>
   )
 }

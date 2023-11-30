@@ -33,10 +33,10 @@ function UIEvent(props: any) {
       style={{ "grid-row-start": startMinute, "grid-row-end": endMinute }}>
         <div class="flex">
           {getIcon(props.clase.tipoClase)}
-          <p class="text-s font-normal text-gray-500 my-0">{props.clase.tipoClase}</p>
+          <p class="text-[1cqh]  font-normal text-gray-500 my-0">{props.clase.tipoClase}</p>
 
         </div>
-      <p class="text-base font-bold text-gray-800 my-0">{props.clase.profesor}</p>
+      <p class="text-base text-[1cqh] font-bold text-gray-800 my-0">{props.clase.profesor}</p>
     </div>
   )
 }
@@ -105,7 +105,7 @@ function AsignaturasList(props: any) {
 
 
   return (
-    <section class="min-w-[40rem]  py-2 px-7 rounded-lg  max-h-[40rem] overflow-scroll m-16 border-2 shadow">
+    <section class="min-w-[40rem]  py-2 px-7 rounded-lg  max-h-[40rem] overflow-scroll mx-16 my-2 border-2 shadow">
 
       <For each={props.asignaturas()}>{(asignatura: IAsignatura) =>
         <div class="p-2 m-2 rounded-md">

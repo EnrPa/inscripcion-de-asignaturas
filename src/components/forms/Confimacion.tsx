@@ -73,11 +73,11 @@ export default function Confirmacion(props: any){
               >{confirmados().includes(seccion) ? "Confirmado" : "Confirmar"}</button>
             </section>
           }</For>
+          <div class="flex">
+            <button onClick={() => props.prev()} class="back flex"> <img src="back.svg" />Volver</button>
+            <button onClick={() => {handleContinue()}} class="continue flex justify-between" disabled={isDisabledContinue()}>Continuar <img src="next.svg" /></button>
+          </div>
         </div>
-      </div>
-      <div class="flex">
-        <button onClick={() => props.prev()} class="back flex"> <img src="back.svg" />Volver</button>
-        <button onClick={() => {handleContinue()}} class="continue flex justify-between" disabled={isDisabledContinue()}>Continuar <img src="next.svg" /></button>
       </div>
     </main>
   )

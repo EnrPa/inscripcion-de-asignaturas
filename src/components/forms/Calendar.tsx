@@ -29,14 +29,13 @@ function UIEvent(props: any) {
   if (fuckedUpWeekDay[props.clase.inicio.getDay()] != props.day) return
 
   return (
-    <div class={'static rounded-lg  bg-white text-center w-auto overflow-hidden border-2 border-solid border-amber-300 shadow' + props.class}
+    <div class={'static rounded-lg text-[1cqh] bg-white text-center w-auto overflow-hidden border-2 border-solid border-amber-300 shadow' + props.class}
       style={{ "grid-row-start": startMinute, "grid-row-end": endMinute }}>
         <div class="flex">
           {getIcon(props.clase.tipoClase)}
-          <p class="text-[1cqh]  font-normal text-gray-500 my-0">{props.clase.tipoClase}</p>
-
+          <p class="font-bold">{props.clase.nombre}</p>
         </div>
-      <p class="text-base text-[1cqh] font-bold text-gray-800 my-0">{props.clase.profesor}</p>
+          <p class="text-[1cqh] my-0">{props.clase.tipoClase}</p>
     </div>
   )
 }
@@ -258,7 +257,7 @@ export function Calendar(props: any) {
         <div class="flex items-center">
           <div>
             <AsignaturasList asignaturas={props.asignaturas} setHover={setHover} toggleSelected={toggleSelected} disabledSectionIDs={disabledSectionIDs} />
-            <div class="flex">
+            <div class="flex mx-12">
               <button onClick={() => props.prev()} class="back flex"> <img src="back.svg" />Volver*</button>
               <button onClick={() => handleContinue()} class="continue flex justify-between" disabled={isDisabledContinue()}>Continuar <img src="next.svg" /></button>
             </div>

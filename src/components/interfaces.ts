@@ -32,6 +32,7 @@ export interface ISeccion {
 }
 
 export interface IClases {
+  nombre: string,
   profesor: string,
   inicio: Date,
   finalizacion: Date,

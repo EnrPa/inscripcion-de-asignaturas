@@ -31,9 +31,12 @@ function UIEvent(props: any) {
   return (
     <div class={'static rounded-lg  bg-white text-center w-auto overflow-hidden border-2 border-solid border-amber-300 shadow' + props.class}
       style={{ "grid-row-start": startMinute, "grid-row-end": endMinute }}>
-        {getIcon(props.clase.tipoClase)}
+        <div class="flex">
+          {getIcon(props.clase.tipoClase)}
+          <p class="text-s font-normal text-gray-500 my-0">{props.clase.tipoClase}</p>
+
+        </div>
       <p class="text-base font-bold text-gray-800 my-0">{props.clase.profesor}</p>
-      <p class="text-s font-light text-gray-500 my-0">{props.clase.tipoClase}</p>
     </div>
   )
 }
@@ -114,12 +117,12 @@ function AsignaturasList(props: any) {
               class= "shadow bg-white border border-gray-200 transition-colors hover:bg-gray-50 rounded-xl px-4 py-4 flex  mb-4"
             >
               <aside class="flex w-1/12 items-center justify-center">
-                <input class="w-6 h-6 mr-2 checked:bg-yellow-300" disabled={props.disabledSectionIDs().includes(seccion.numeroSeccion)} type="radio" name={asignatura.numeroCurso} id={asignatura.idAsignatura + "-" + seccion.idSeccion} onClick={(e) => { props.toggleSelected(seccion) }} />
+                <input class="w-6 h-6 mr-2 checked:bg-yellow-300" disabled={props.disabledSectionIDs().includes(seccion.numeroSeccion + "-" + seccion.idAsignatura)} type="radio" name={asignatura.numeroCurso} id={asignatura.idAsignatura + "-" + seccion.idSeccion} onClick={(e) => { props.toggleSelected(seccion) }} />
               </aside>
               <div>
                 <h1 class="font-bold">Sección {seccion.numeroSeccion}</h1>
                 <div>
-                    {props.disabledSectionIDs().includes(seccion.numeroSeccion) &&<p class="text-red-500">Existe una colisión entre asignaturas. No es posible tomar esta sección</p>}
+                    {props.disabledSectionIDs().includes(seccion.numeroSeccion + "-" + seccion.idAsignatura) &&<p class="text-red-500">Existe una colisión entre asignaturas. No es posible tomar esta sección</p>}
                   <details >
                     <summary>Ver clases</summary>
                     <For each={seccion.clases}>{clase =>
@@ -164,29 +167,25 @@ export function Calendar(props: any) {
   const [disabledSectionIDs, setDisabledSectionIDs] = createSignal<string[]>([]);
 
   function compararTiempos(inicio1: Date, finalizacion1: Date, inicio2: Date, finalizacion2: Date): boolean {
-    const seSuperponenDias = inicio1.getUTCDate() === inicio2.getUTCDate();
-    const seSuperponenHoras = inicio1.getUTCHours() === inicio2.getUTCHours();
-    const seSuperponenMinutos = Math.abs(inicio1.getUTCMinutes() - inicio2.getUTCMinutes()) < 60;
-  
     const seSuperpone =
-      seSuperponenDias &&
-      ((inicio1 <= inicio2 && finalizacion1 >= inicio2) || (inicio1 >= inicio2 && inicio1 <= finalizacion2)) &&
-      (seSuperponenHoras || seSuperponenMinutos);
-  
-    return seSuperpone;
+    (inicio1 <= inicio2 && finalizacion1 >= inicio2) ||
+    (inicio1 >= inicio2 && inicio1 <= finalizacion2);
+
+  return seSuperpone;
   }
 
   function averiguarChoques() {
     setDisabledSectionIDs([]);
     // Pasar por casa asignatura.
+    console.warn("-----------------------------")
     let flatAsignaturas: ISeccion[] = props.asignaturas().map((a:IAsignatura) => a.secciones).flat()
     flatAsignaturas.forEach((seccion: ISeccion) => {
       seccion.clases.forEach((clase: IClases) => {
         selected().forEach((seleccionadaSeccion:ISeccion)=> {
           seleccionadaSeccion.clases.forEach((seleccionadaClase: IClases) => {
-            if (compararTiempos(clase.inicio, clase.finalizacion, seleccionadaClase.inicio, seleccionadaClase.finalizacion) && seccion.numeroSeccion != seleccionadaSeccion.numeroSeccion){
+            if (compararTiempos(clase.inicio, clase.finalizacion, seleccionadaClase.inicio, seleccionadaClase.finalizacion) && seccion.idAsignatura != seleccionadaSeccion.idAsignatura){
               console.warn("Hay choque entre", seleccionadaSeccion, "y", seccion )
-              setDisabledSectionIDs([...disabledSectionIDs(), seccion.numeroSeccion])
+              setDisabledSectionIDs([...disabledSectionIDs(), seccion.numeroSeccion + "-" + seccion.idAsignatura])
             }
           })
         })
@@ -243,6 +242,15 @@ export function Calendar(props: any) {
     props.seleccionadas(final());
     props.next();
   }
+  let [isDisabledContinue, setIsDisabledContinue] = createSignal(true);
+  createEffect(on(selected, () => {
+    if (props.asignaturas().length == selected().length){
+      setIsDisabledContinue(false);
+    }
+    else {
+      setIsDisabledContinue(true);
+    }
+  }))
 
   return (
     <main>
@@ -251,10 +259,10 @@ export function Calendar(props: any) {
           <div>
             <AsignaturasList asignaturas={props.asignaturas} setHover={setHover} toggleSelected={toggleSelected} disabledSectionIDs={disabledSectionIDs} />
             <div class="flex">
-              <button onClick={() => props.prev()} class="back flex"> <img src="back.svg" />Volver</button>
-              <button onClick={() => handleContinue()} class="continue flex justify-between">Continuar <img src="next.svg" /></button>
-
+              <button onClick={() => props.prev()} class="back flex"> <img src="back.svg" />Volver*</button>
+              <button onClick={() => handleContinue()} class="continue flex justify-between" disabled={isDisabledContinue()}>Continuar <img src="next.svg" /></button>
             </div>
+            <p>*Si retrocedes a la selección de asignaturas perderás tu progreso </p>
           </div>
           <WeekView hover={hover} asignaturas={props.asignaturas} selected={selected} />
         </div>

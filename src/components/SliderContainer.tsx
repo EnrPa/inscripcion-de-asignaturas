@@ -10,7 +10,13 @@ import Confirmacion from "./forms/Confimacion";
 import Final from "./forms/Final";
 import "./../../public/style.css"
 
-
+// 7 es lunes
+// 8 es martes
+// 9 es miercoles
+// 10 es jueves
+// 11 es viernes
+// 12 es sábado
+// 13 es domingo
 const asignaturasChatGPT = [
   {
     idAsignatura: 1,
@@ -28,15 +34,15 @@ const asignaturasChatGPT = [
         maxCupos: 30,
         clases: [
           {
-            profesor: 'Profesor Data',
-            inicio: new Date(2023, 11, 20, 10, 0),
-            finalizacion: new Date(2023, 11, 20, 12, 0),
+            profesor: 'Profesor DataTEST',
+            inicio: new Date(2000, 1, 7, 10, 0),
+            finalizacion: new Date(2000, 1, 7, 12, 30),
             tipoClase: ETipoClase.Laboratorio,
           },
           {
             profesor: 'Profesora Structure',
-            inicio: new Date(2023, 11, 22, 14, 0),
-            finalizacion: new Date(2023, 11, 22, 16, 0),
+            inicio: new Date(2000, 1, 7, 14, 0),
+            finalizacion: new Date(2000, 1, 7, 16, 0),
             tipoClase: ETipoClase.Catedra,
           }
         ]
@@ -50,14 +56,14 @@ const asignaturasChatGPT = [
         clases: [
           {
             profesor: 'Profesor Code',
-            inicio: new Date(2023, 11, 21, 9, 0),
-            finalizacion: new Date(2023, 11, 21, 11, 0),
+            inicio: new Date(2000, 1, 8, 10, 0),
+            finalizacion: new Date(2000, 1, 8, 12, 30),
             tipoClase: ETipoClase.Catedra,
           },
           {
             profesor: 'Profesor Algorithm',
-            inicio: new Date(2023, 11, 23, 13, 0),
-            finalizacion: new Date(2023, 11, 23, 15, 0),
+            inicio: new Date(2000, 1, 8, 14, 0),
+            finalizacion: new Date(2000, 1, 8, 16, 0),
             tipoClase: ETipoClase.Laboratorio,
           }
         ]
@@ -81,14 +87,14 @@ const asignaturasChatGPT = [
         clases: [
           {
             profesor: 'Profesora Algo',
-            inicio: new Date(2023, 11, 18, 13, 0),
-            finalizacion: new Date(2023, 11, 18, 15, 0),
+            inicio: new Date(2000, 1, 11, 18, 0),
+            finalizacion: new Date(2000, 1, 11, 20, 0),
             tipoClase: ETipoClase.Catedra,
           },
           {
             profesor: 'Profesor Advanced',
-            inicio: new Date(2023, 11, 20, 15, 30),
-            finalizacion: new Date(2023, 11, 20, 17, 30),
+            inicio: new Date(2000, 1, 11, 16, 30),
+            finalizacion: new Date(2000, 1, 11, 17, 30),
             tipoClase: ETipoClase.Laboratorio,
           }
         ]
@@ -102,14 +108,14 @@ const asignaturasChatGPT = [
         clases: [
           {
             profesor: 'Profesor Algorithmic',
-            inicio: new Date(2023, 11, 19, 10, 0),
-            finalizacion: new Date(2023, 11, 19, 12, 0),
+            inicio: new Date(2000, 1, 10, 10, 0),
+            finalizacion: new Date(2000, 1, 10, 12, 0),
             tipoClase: ETipoClase.Laboratorio,
           },
           {
             profesor: 'Profesor Avanzado',
-            inicio: new Date(2023, 11, 21, 14, 0),
-            finalizacion: new Date(2023, 11, 21, 16, 0),
+            inicio: new Date(2000, 1, 8, 8, 0),
+            finalizacion: new Date(2000, 1, 8, 9,30),
             tipoClase: ETipoClase.Laboratorio,
           }
         ]
@@ -133,14 +139,14 @@ const asignaturasChatGPT = [
         clases: [
           {
             profesor: 'Profesor Database',
-            inicio: new Date(2023, 11, 15, 9, 0),
-            finalizacion: new Date(2023, 11, 15, 11, 0),
+            inicio: new Date(2000, 1, 9, 9, 0),
+            finalizacion: new Date(2000, 1, 9, 11, 0),
             tipoClase: ETipoClase.Catedra,
           },
           {
             profesor: 'Profesora Advanced DB',
-            inicio: new Date(2023, 11, 17, 13, 0),
-            finalizacion: new Date(2023, 11, 17, 15, 0),
+            inicio: new Date(2000, 1, 9, 13, 0),
+            finalizacion: new Date(2000, 1, 9, 15, 0),
             tipoClase: ETipoClase.Laboratorio,
           }
         ]
@@ -154,20 +160,179 @@ const asignaturasChatGPT = [
         clases: [
           {
             profesor: 'Profesora Data',
-            inicio: new Date(2023, 11, 16, 10, 0),
-            finalizacion: new Date(2023, 11, 16, 12, 0),
+            inicio: new Date(2000, 1, 8, 10, 0),
+            finalizacion: new Date(2000, 1, 8, 12, 0),
             tipoClase: ETipoClase.Laboratorio,
           },
           {
             profesor: 'Profesor DB',
-            inicio: new Date(2023, 11, 18, 14, 0),
-            finalizacion: new Date(2023, 11, 18, 16, 0),
+            inicio: new Date(2000, 1, 10, 14, 0),
+            finalizacion: new Date(2000, 1, 10, 16, 0),
             tipoClase: ETipoClase.Catedra,
           }
         ]
       }
     ]
   },
+  {
+    idAsignatura: 4,
+    esObligatoria: false,
+    numeroCurso: 'WEBD',
+    nombre: 'Desarrollo Web Avanzado',
+    departamento: 'Carrera Ing. en Informática',
+    semestre: 7,
+    secciones: [
+        {
+            idAsignatura: 4,
+            idSeccion: 1,
+            numeroSeccion: '601',
+            cuposTomados: 15,
+            maxCupos: 20,
+            clases: [
+                {
+                    profesor: 'Profesor Web',
+                    inicio: new Date(2000, 1, 7, 11, 0),
+                    finalizacion: new Date(2000, 1, 7, 13, 0),
+                    tipoClase: ETipoClase.Catedra,
+                },
+                {
+                    profesor: 'Profesora Advanced Web',
+                    inicio: new Date(2000, 1, 8, 15, 0),
+                    finalizacion: new Date(2000, 1, 8, 17, 0),
+                    tipoClase: ETipoClase.Laboratorio,
+                }
+            ]
+        },
+        {
+            idAsignatura: 4,
+            idSeccion: 2,
+            numeroSeccion: '602',
+            cuposTomados: 18,
+            maxCupos: 20,
+            clases: [
+                {
+                    profesor: 'Profesor Frontend',
+                    inicio: new Date(2000, 1, 12, 9, 0),
+                    finalizacion: new Date(2000, 1, 12, 11, 0),
+                    tipoClase: ETipoClase.Catedra,
+                },
+                {
+                    profesor: 'Profesor Backend',
+                    inicio: new Date(2000, 1, 8, 8, 0),
+                    finalizacion: new Date(2000, 1, 8, 10, 0),
+                    tipoClase: ETipoClase.Laboratorio,
+                }
+            ]
+        }
+    ]
+},
+{
+  idAsignatura: 5,
+  esObligatoria: false,
+  numeroCurso: 'IA',
+  nombre: 'Inteligencia Artificial',
+  departamento: 'Carrera Ing. en Informática',
+  semestre: 5,
+  secciones: [
+      {
+          idAsignatura: 5,
+          idSeccion: 1,
+          numeroSeccion: '701',
+          cuposTomados: 28,
+          maxCupos: 30,
+          clases: [
+              {
+                  profesor: 'Profesora AI',
+                  inicio: new Date(2000, 1, 9, 14, 0),
+                  finalizacion: new Date(2000, 1, 9, 16, 0),
+                  tipoClase: ETipoClase.Catedra,
+              },
+              {
+                  profesor: 'Profesor ML',
+                  inicio: new Date(2000, 1, 10, 10, 0),
+                  finalizacion: new Date(2000, 1, 10, 12, 0),
+                  tipoClase: ETipoClase.Laboratorio,
+              }
+          ]
+      },
+      {
+          idAsignatura: 5,
+          idSeccion: 2,
+          numeroSeccion: '702',
+          cuposTomados: 29,
+          maxCupos: 30,
+          clases: [
+              {
+                  profesor: 'Profesor Robotics',
+                  inicio: new Date(2000, 1, 7, 9, 0),
+                  finalizacion: new Date(2000, 1, 7, 11, 0),
+                  tipoClase: ETipoClase.Catedra,
+              },
+              {
+                  profesor: 'Profesora AI Ethics',
+                  inicio: new Date(2000, 1, 7, 14, 0),
+                  finalizacion: new Date(2000, 1, 7, 16, 0),
+                  tipoClase: ETipoClase.Laboratorio,
+              }
+          ]
+      }
+  ]
+},
+{
+  idAsignatura: 6,
+  esObligatoria: false,
+  numeroCurso: 'SYSA',
+  nombre: 'Sistemas Operativos',
+  departamento: 'Carrera Ing. en Informática',
+  semestre: 3,
+  secciones: [
+      {
+          idAsignatura: 6,
+          idSeccion: 1,
+          numeroSeccion: '601',
+          cuposTomados: 25,
+          maxCupos: 28,
+          clases: [
+              {
+                  profesor: 'Profesor OS',
+                  inicio: new Date(2000, 1, 10, 9, 0),
+                  finalizacion: new Date(2000, 1, 10, 11, 0),
+                  tipoClase: ETipoClase.Catedra,
+              },
+              {
+                  profesor: 'Profesora Kernel',
+                  inicio: new Date(2000, 1, 11, 13, 0),
+                  finalizacion: new Date(2000, 1, 11, 15, 0),
+                  tipoClase: ETipoClase.Laboratorio,
+              }
+          ]
+      },
+      {
+          idAsignatura: 6,
+          idSeccion: 2,
+          numeroSeccion: '602',
+          cuposTomados: 26,
+          maxCupos: 28,
+          clases: [
+              {
+                  profesor: 'Profesor File System',
+                  inicio: new Date(2000, 1, 13, 14, 0),
+                  finalizacion: new Date(2000, 1, 13, 16, 0),
+                  tipoClase: ETipoClase.Catedra,
+              },
+              {
+                  profesor: 'Profesor Process Management',
+                  inicio: new Date(2000, 1, 7, 10, 0),
+                  finalizacion: new Date(2000, 1, 7, 12, 0),
+                  tipoClase: ETipoClase.Laboratorio,
+              }
+          ]
+      }
+  ]
+},
+// Puedes seguir añadiendo más bloques de asignaturas, secciones y clases según sea necesario.
+// ...
+
   
   
 ]
@@ -232,12 +397,6 @@ function SliderLayout() {
         <div>
          <Final/>
         </div>
-      </div>
-      <div class="bg-white">
-      <button onClick={() => {prev()}}>IZQUIERDA</button>
-      <p> - {current().toString()} - </p>
-      <button onClick={() => {next()}}>DERECHA</button>
-
       </div>
     </main>
   )

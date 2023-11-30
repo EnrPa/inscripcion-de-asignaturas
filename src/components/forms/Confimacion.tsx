@@ -7,6 +7,7 @@ import { FinalWeekView, WeekView } from "./Calendar";
 
 export default function Confirmacion(props: any){
   const [confirmados, setConfirmados] = createSignal<ISeccion[]>  ([]); 
+  const [isDisabledContinue, setIsDisabledContinue] = createSignal(true);
 
   createEffect(() => {
     if (props.current() == 2){
@@ -43,6 +44,14 @@ export default function Confirmacion(props: any){
   function handleContinue() { 
     props.next();
   } 
+  createEffect(on(confirmados, () => {
+    if (confirmados().length == props.secciones().length){
+      console.log("oo")
+      setIsDisabledContinue(false)
+    } else {
+      setIsDisabledContinue(true)
+    }
+  }))
 
 
   return (
@@ -68,7 +77,7 @@ export default function Confirmacion(props: any){
       </div>
       <div class="flex">
         <button onClick={() => props.prev()} class="back flex"> <img src="back.svg" />Volver</button>
-        <button onClick={() => {handleContinue()}} class="continue flex justify-between">Continuar <img src="next.svg" /></button>
+        <button onClick={() => {handleContinue()}} class="continue flex justify-between" disabled={isDisabledContinue()}>Continuar <img src="next.svg" /></button>
       </div>
     </main>
   )

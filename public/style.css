@@ -7,7 +7,7 @@
 }
 
 .continue {
-  @apply m-5 mt-5 w-56 rounded-md bg-primary1 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary1  transition ease-in duration-150;
+  @apply  disabled:bg-yellow-100 m-5 mt-5 w-56 rounded-md bg-primary1 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary1  transition ease-in duration-150;
 }
 .back {
   @apply m-5 w-56 rounded-md border border-primary1 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary1  transition ease-in duration-150;

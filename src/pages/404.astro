@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../layouts/Nav.astro";
+
+---
+
+<Layout title="Documento no encontrado">
+  <Nav />
+  <div class="h-12 w-full"></div>
+  <div class="w-full h-screen text-center flex items-center justify-center ">
+    <div class="rounded-xl shadow-lg p-9">
+      <h1 class="text-6xl font-medium">404 - Página no encontrada</h1>
+      <p>La página que buscabas no ha sido encontrada en nuestros servidores</p>
+      <a href="/"><button class=" disabled:bg-yellow-100 m-5 mt-5 w-56 rounded-md bg-primary1 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary1  transition ease-in duration-150;">Volver?</button></a>
+    </div>
+  </div>
+</Layout>

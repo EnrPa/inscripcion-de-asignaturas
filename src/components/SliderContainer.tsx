@@ -43,15 +43,15 @@ const asignaturasChatGPT = [
           {
             nombre: 'Estructuras de Datos',
             profesor: 'Profesor DataTEST',
-            inicio: new Date(2000, 1, 7, 10, 0),
-            finalizacion: new Date(2000, 1, 7, 12, 30),
+            inicio: new Date(2000, 1, 7, 9, 30),
+            finalizacion: new Date(2000, 1, 7, 12, 10),
             tipoClase: ETipoClase.Laboratorio,
           },
           {
             nombre: 'Estructuras de Datos',
             profesor: 'Profesora Structure',
             inicio: new Date(2000, 1, 7, 14, 0),
-            finalizacion: new Date(2000, 1, 7, 16, 0),
+            finalizacion: new Date(2000, 1, 7, 16, 40),
             tipoClase: ETipoClase.Catedra,
           }
         ]
@@ -66,15 +66,15 @@ const asignaturasChatGPT = [
           {
             nombre: 'Estructuras de Datos',
             profesor: 'Profesor Code',
-            inicio: new Date(2000, 1, 8, 10, 0),
-            finalizacion: new Date(2000, 1, 8, 12, 30),
+            inicio: new Date(2000, 1, 8, 9, 30),
+            finalizacion: new Date(2000, 1, 8, 12, 10),
             tipoClase: ETipoClase.Catedra,
           },
           {
             nombre: 'Estructuras de Datos',
             profesor: 'Profesor Algorithm',
             inicio: new Date(2000, 1, 8, 14, 0),
-            finalizacion: new Date(2000, 1, 8, 16, 0),
+            finalizacion: new Date(2000, 1, 8, 16, 40),
             tipoClase: ETipoClase.Laboratorio,
           }
         ]
@@ -99,15 +99,15 @@ const asignaturasChatGPT = [
           {
             nombre: 'Algoritmos Avanzados',
             profesor: 'Profesora Algo',
-            inicio: new Date(2000, 1, 11, 18, 0),
-            finalizacion: new Date(2000, 1, 11, 20, 0),
+            inicio: new Date(2000, 1, 11, 18, 30),
+            finalizacion: new Date(2000, 1, 11, 19, 40),
             tipoClase: ETipoClase.Catedra,
           },
           {
             nombre: 'Algoritmos Avanzados',
             profesor: 'Profesor Advanced',
-            inicio: new Date(2000, 1, 11, 16, 30),
-            finalizacion: new Date(2000, 1, 11, 17, 30),
+            inicio: new Date(2000, 1, 11, 17, 0),
+            finalizacion: new Date(2000, 1, 11, 18, 10),
             tipoClase: ETipoClase.Laboratorio,
           }
         ]
@@ -122,15 +122,15 @@ const asignaturasChatGPT = [
           {
             nombre: 'Algoritmos Avanzados',
             profesor: 'Profesor Algorithmic',
-            inicio: new Date(2000, 1, 10, 10, 0),
-            finalizacion: new Date(2000, 1, 10, 12, 0),
+            inicio: new Date(2000, 1, 10, 10, 40),
+            finalizacion: new Date(2000, 1, 10, 12, 10),
             tipoClase: ETipoClase.Laboratorio,
           },
           {
             nombre: 'Algoritmos Avanzados',
             profesor: 'Profesor Avanzado',
             inicio: new Date(2000, 1, 8, 8, 0),
-            finalizacion: new Date(2000, 1, 8, 9,30),
+            finalizacion: new Date(2000, 1, 8, 9,10),
             tipoClase: ETipoClase.Laboratorio,
           }
         ]
@@ -155,15 +155,15 @@ const asignaturasChatGPT = [
           {
             nombre: 'Bases de Datos Avanzadas',
             profesor: 'Profesor Database',
-            inicio: new Date(2000, 1, 9, 9, 0),
+            inicio: new Date(2000, 1, 9, 9, 30),
             finalizacion: new Date(2000, 1, 9, 11, 0),
             tipoClase: ETipoClase.Catedra,
           },
           {
             nombre: 'Bases de Datos Avanzadas',
             profesor: 'Profesora Advanced DB',
-            inicio: new Date(2000, 1, 9, 13, 0),
-            finalizacion: new Date(2000, 1, 9, 15, 0),
+            inicio: new Date(2000, 1, 9, 14, 0),
+            finalizacion: new Date(2000, 1, 9, 15, 30),
             tipoClase: ETipoClase.Laboratorio,
           }
         ]
@@ -178,15 +178,15 @@ const asignaturasChatGPT = [
           {
             nombre: 'Bases de Datos Avanzadas',
             profesor: 'Profesora Data',
-            inicio: new Date(2000, 1, 8, 10, 0),
-            finalizacion: new Date(2000, 1, 8, 12, 0),
+            inicio: new Date(2000, 1, 8, 10, 40),
+            finalizacion: new Date(2000, 1, 8, 12, 10),
             tipoClase: ETipoClase.Laboratorio,
           },
           {
             nombre: 'Bases de Datos Avanzadas',
             profesor: 'Profesor DB',
             inicio: new Date(2000, 1, 10, 14, 0),
-            finalizacion: new Date(2000, 1, 10, 16, 0),
+            finalizacion: new Date(2000, 1, 10, 15, 10),
             tipoClase: ETipoClase.Catedra,
           }
         ]
@@ -212,14 +212,14 @@ const asignaturasChatGPT = [
                   nombre: 'Desarrollo Web Avanzado',
                     profesor: 'Profesor Web',
                     inicio: new Date(2000, 1, 7, 11, 0),
-                    finalizacion: new Date(2000, 1, 7, 13, 0),
+                    finalizacion: new Date(2000, 1, 7, 12, 10),
                     tipoClase: ETipoClase.Catedra,
                 },
                 {
                     nombre: 'Desarrollo Web Avanzado',
                     profesor: 'Profesora Advanced Web',
-                    inicio: new Date(2000, 1, 8, 15, 0),
-                    finalizacion: new Date(2000, 1, 8, 17, 0),
+                    inicio: new Date(2000, 1, 8, 15, 30),
+                    finalizacion: new Date(2000, 1, 8, 16, 40),
                     tipoClase: ETipoClase.Laboratorio,
                 }
             ]
@@ -234,7 +234,7 @@ const asignaturasChatGPT = [
                 {
                   nombre: 'Desarrollo Web Avanzado',
                     profesor: 'Profesor Frontend',
-                    inicio: new Date(2000, 1, 12, 9, 0),
+                    inicio: new Date(2000, 1, 12, 9, 10),
                     finalizacion: new Date(2000, 1, 12, 11, 0),
                     tipoClase: ETipoClase.Catedra,
                 },
@@ -242,7 +242,7 @@ const asignaturasChatGPT = [
                   nombre: 'Desarrollo Web Avanzado',
                     profesor: 'Profesor Backend',
                     inicio: new Date(2000, 1, 8, 8, 0),
-                    finalizacion: new Date(2000, 1, 8, 10, 0),
+                    finalizacion: new Date(2000, 1, 8, 10, 40),
                     tipoClase: ETipoClase.Laboratorio,
                 }
             ]
@@ -268,14 +268,14 @@ const asignaturasChatGPT = [
                 nombre: 'Inteligencia Artificial',
                   profesor: 'Profesora AI',
                   inicio: new Date(2000, 1, 9, 14, 0),
-                  finalizacion: new Date(2000, 1, 9, 16, 0),
+                  finalizacion: new Date(2000, 1, 9, 16, 40),
                   tipoClase: ETipoClase.Catedra,
               },
               {
                 nombre: 'Inteligencia Artificial',
                   profesor: 'Profesor ML',
-                  inicio: new Date(2000, 1, 10, 10, 0),
-                  finalizacion: new Date(2000, 1, 10, 12, 0),
+                  inicio: new Date(2000, 1, 10, 11, 0),
+                  finalizacion: new Date(2000, 1, 10, 12, 10),
                   tipoClase: ETipoClase.Laboratorio,
               }
           ]
@@ -290,7 +290,7 @@ const asignaturasChatGPT = [
               {
                 nombre: 'Inteligencia Artificial',
                   profesor: 'Profesor Robotics',
-                  inicio: new Date(2000, 1, 7, 9, 0),
+                  inicio: new Date(2000, 1, 7, 9, 30),
                   finalizacion: new Date(2000, 1, 7, 11, 0),
                   tipoClase: ETipoClase.Catedra,
               },
@@ -298,7 +298,7 @@ const asignaturasChatGPT = [
                 nombre: 'Inteligencia Artificial',
                   profesor: 'Profesora AI Ethics',
                   inicio: new Date(2000, 1, 7, 14, 0),
-                  finalizacion: new Date(2000, 1, 7, 16, 0),
+                  finalizacion: new Date(2000, 1, 7, 16, 40),
                   tipoClase: ETipoClase.Laboratorio,
               }
           ]
@@ -324,16 +324,16 @@ const asignaturasChatGPT = [
                 nombre: 'Sistemas Operativos',
 
                   profesor: 'Profesor OS',
-                  inicio: new Date(2000, 1, 10, 9, 0),
-                  finalizacion: new Date(2000, 1, 10, 11, 0),
+                  inicio: new Date(2000, 1, 10, 9, 30),
+                  finalizacion: new Date(2000, 1, 10, 10, 40),
                   tipoClase: ETipoClase.Catedra,
               },
               {
                 nombre: 'Sistemas Operativos',
 
                   profesor: 'Profesora Kernel',
-                  inicio: new Date(2000, 1, 11, 13, 0),
-                  finalizacion: new Date(2000, 1, 11, 15, 0),
+                  inicio: new Date(2000, 1, 11, 14, 0),
+                  finalizacion: new Date(2000, 1, 11, 15, 10),
                   tipoClase: ETipoClase.Laboratorio,
               }
           ]
@@ -350,15 +350,15 @@ const asignaturasChatGPT = [
 
                   profesor: 'Profesor File System',
                   inicio: new Date(2000, 1, 13, 14, 0),
-                  finalizacion: new Date(2000, 1, 13, 16, 0),
+                  finalizacion: new Date(2000, 1, 13, 16, 40),
                   tipoClase: ETipoClase.Catedra,
               },
               {
                 nombre: 'Sistemas Operativos',
 
                   profesor: 'Profesor Process Management',
-                  inicio: new Date(2000, 1, 7, 10, 0),
-                  finalizacion: new Date(2000, 1, 7, 12, 0),
+                  inicio: new Date(2000, 1, 7, 10, 40),
+                  finalizacion: new Date(2000, 1, 7, 12, 10),
                   tipoClase: ETipoClase.Laboratorio,
               }
           ]

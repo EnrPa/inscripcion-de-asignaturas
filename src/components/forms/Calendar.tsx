@@ -3,7 +3,7 @@ import { ETipoClase, type IAsignatura, type IClases, type ISeccion } from "../in
 import { For, createEffect, createSignal, mergeProps, on } from "solid-js";
 const weekDay = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 const fuckedUpWeekDay = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado"];
-const tiempos = ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
+const tiempos = ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"];
 
 function getIcon(tipoClase: ETipoClase) {
   let icono = ""
@@ -23,9 +23,9 @@ function getIcon(tipoClase: ETipoClase) {
 
 
 function UIEvent(props: any) {
-  let startMinute = props.clase.inicio.getMinutes() + props.clase.inicio.getHours() * 60
+  let startMinute = props.clase.inicio.getMinutes() + (props.clase.inicio.getHours()-7) * 60
   startMinute = startMinute == 0 ? 1 : startMinute;
-  let endMinute = props.clase.finalizacion.getMinutes() + props.clase.finalizacion.getHours() * 60
+  let endMinute = props.clase.finalizacion.getMinutes() + (props.clase.finalizacion.getHours()-7) * 60
   if (fuckedUpWeekDay[props.clase.inicio.getDay()] != props.day) return
 
   return (
@@ -48,7 +48,7 @@ export function WeekView(props: any) {
         <header class="bg-primary1 py-2 ">
           <h1>Tiempo</h1>
         </header>
-        <div class="flex flex-col  justify-between h-[800px] text-center">
+        <div class="flex flex-col  justify-between h-[700px] text-center">
           <For each={tiempos}>{(hora) =>
             <p>{hora}</p>
           }</For>
@@ -59,7 +59,7 @@ export function WeekView(props: any) {
           <header class="bg-primary1 px-4 py-2 border-l border-gray-700">
             <h1 class="text-center">{day}</h1>
           </header>
-          <div class="w-full bg-gray-200 border-l border-black h-[800px] grid grid-rows-[repeat(1440,_minmax(0,_1fr))] grid-flow-row">
+          <div class="w-full bg-gray-200 border-l border-black h-[700px] grid grid-rows-[repeat(780,_minmax(0,_1fr))] grid-flow-row">
             <For each={props.hover().clases}>{(clase: IClases) =>
               <UIEvent clase={clase} day={day} class="bg-blue-200" />
             }</For>
@@ -82,7 +82,7 @@ export function FinalWeekView(props: any) {
           <header class="bg-primary1 px-4 py-2 border-x border-gray-700">
             <h1>{day}</h1>
           </header>
-          <div class="w-full bg-gray-200 border border-black h-[800px] grid grid-rows-[repeat(1440,_minmax(0,_1fr))] grid-flow-row">
+          <div class="w-full bg-gray-200 border border-black h-[700px] grid grid-rows-[repeat(780,_minmax(0,_1fr))] grid-flow-row">
             <For each={props.asignaturas()}>{(seccion: ISeccion) =>
               <For each={seccion.clases}>{(clase: IClases) =>
                 <UIEvent clase={clase} day={day} class="bg-green-200" seccion={seccion} />
